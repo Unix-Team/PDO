@@ -6,12 +6,12 @@
 		"username" => "root",
 		"password" => "",
 	);
+	$attr = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8');
 	$server_name=$link['servername'];
 	$db_name=$link['dbname'];
 	$dsn="mysql:host=$server_name;dbname=$db_name";
 	try{
-		$connect = new PDO($dsn,$link['username'],$link['password']);
-		$connect -> exec("SET CHARACTER SET utf8");
+		$connect = new PDO($dsn,$link['username'],$link['password'],$attr);
 		return $connect;
 	}catch(PDOException $error){
 		echo "Error in connect to server: ".$error -> __toString();
